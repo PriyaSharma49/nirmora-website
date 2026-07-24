@@ -1,18 +1,12 @@
-import express from "express";
-import dotenv from "dotenv";
-import cors from "cors";
 import { Resend } from "resend";
-
-dotenv.config();
-
-const app = express();
-
-app.use(cors());
-app.use(express.json());
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
-app.post("/send-email", async (req, res) => {
+export default async function handler(req, res) {
+  if (req.method !== "POST") {
+    return res.status(405).json({ message: "Method not allowed" });
+  }
+
   const { name, email, company, service, message } = req.body;
 
   try {
@@ -22,25 +16,18 @@ app.post("/send-email", async (req, res) => {
       subject: `New Contact Form from ${name}`,
       html: `
         <h2>New Contact Form</h2>
-
         <p><b>Name:</b> ${name}</p>
         <p><b>Email:</b> ${email}</p>
         <p><b>Company:</b> ${company}</p>
         <p><b>Service:</b> ${service}</p>
-        <p><b>Message:</b></p>
-
-        <p>${message}</p>
-      `
+        <p><b>Message:</b> ${message}</p>
+      `,
     });
 
-    res.json({ success: true });
+    res.status(200).json({ success: true });
 
-  } catch (err) {
-    console.log(err);
+  } catch (error) {
+    console.error(error);
     res.status(500).json({ success: false });
   }
-});
-
-app.listen(5000, () => {
-  console.log("Server running on port 5000");
-});
+}
