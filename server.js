@@ -7,10 +7,24 @@ dotenv.config();
 
 const app = express();
 
-app.use(cors());
+app.use(
+  cors({
+    origin: [
+      "http://localhost:5173",
+      "https://nirmora-website.vercel.app",
+    ],
+    methods: ["POST"],
+    credentials: true,
+  })
+);
+
 app.use(express.json());
 
 const resend = new Resend(process.env.RESEND_API_KEY);
+
+app.get("/", (req, res) => {
+  res.send("Nirmora backend server is running");
+});
 
 app.post("/send-email", async (req, res) => {
   const { name, email, company, service, message } = req.body;
@@ -21,26 +35,34 @@ app.post("/send-email", async (req, res) => {
       to: process.env.CONTACT_EMAIL,
       subject: `New Contact Form from ${name}`,
       html: `
-        <h2>New Contact Form</h2>
+        <h2>New Contact Form Submission</h2>
 
         <p><b>Name:</b> ${name}</p>
         <p><b>Email:</b> ${email}</p>
         <p><b>Company:</b> ${company}</p>
         <p><b>Service:</b> ${service}</p>
         <p><b>Message:</b></p>
-
         <p>${message}</p>
-      `
+      `,
     });
 
-    res.json({ success: true });
+    res.json({
+      success: true,
+      message: "Email sent successfully",
+    });
 
-  } catch (err) {
-    console.log(err);
-    res.status(500).json({ success: false });
+  } catch (error) {
+    console.error(error);
+
+    res.status(500).json({
+      success: false,
+      message: "Email sending failed",
+    });
   }
 });
 
-app.listen(5000, () => {
-  console.log("Server running on port 5000");
+const PORT = process.env.PORT || 5000;
+
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
 });
