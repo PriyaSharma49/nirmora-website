@@ -1,0 +1,113 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: #FAF5EC;
+  color: #1C1A17;
+}
+
+@keyframes floatY {
+  0%, 100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-14px);
+  }
+}
+
+@keyframes scrollX {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+::selection {
+  background: #D9B577;
+  color: #FAF5EC;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #FAF5EC;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #D9B577;
+  border-radius: 10px;
+}
+
+
+@layer components {
+
+  .eyebrow {
+    @apply inline-flex items-center gap-2.5 font-mono text-[12px] tracking-[0.18em] uppercase text-[#8C6435] mb-4;
+  }
+
+  .eyebrow::before {
+    content: "";
+    @apply block w-5 h-px bg-[#B8874F];
+  }
+
+
+  .grad-text {
+    background: linear-gradient(
+      100deg,
+      #8C6435,
+      #B8874F 55%,
+      #D9B577
+    );
+
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+
+  .btn {
+    @apply inline-flex items-center gap-2.5 rounded-full px-7 py-4 font-body font-bold text-[14.5px] transition-all duration-300 whitespace-nowrap;
+  }
+
+
+  .btn-primary {
+    @apply bg-[#1C1A17] text-[#FAF5EC] shadow-[0_18px_40px_-18px_rgba(28,26,23,0.25)] hover:-translate-y-0.5 hover:shadow-[0_12px_30px_-12px_rgba(184,135,79,0.45)];
+  }
+
+
+  .btn-ghost {
+    @apply bg-white/60 border border-[#1C1A17]/15 text-[#1C1A17] backdrop-blur hover:border-[#B8874F] hover:bg-white;
+  }
+
+
+  .btn-gold {
+    @apply bg-gradient-to-br from-[#B8874F] to-[#8C6435] text-[#FAF5EC] shadow-[0_12px_30px_-12px_rgba(184,135,79,0.45)] hover:-translate-y-0.5;
+  }
+
+
+  .card-surface {
+    @apply bg-[#FFFDF9]/80 border border-[#1C1A17]/10 backdrop-blur-md rounded-xl2;
+  }
+
+
+  .field-input {
+    @apply bg-[#FFFDF9] border border-[#1C1A17]/15 rounded-lg px-4 py-3 text-[14.5px] text-[#1C1A17] outline-none transition-colors duration-200 focus:border-[#B8874F];
+  }
+
+
+  .section-pad {
+    @apply py-24 md:py-32;
+  }
+
+}
