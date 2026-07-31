@@ -74,13 +74,13 @@ const [message, setMessage] = useState("")
                 </div>
                 <div>
                   <span className="block font-mono text-[11px] uppercase tracking-wide text-ink-dim mb-1">Phone</span>
-                  <a href="tel:+918928246726" className="font-semibold text-ink hover:text-gold-deep transition-colors">
+                  <a href="tel:+91 73043 02068" className="font-semibold text-ink hover:text-gold-deep transition-colors">
                     +91 89282 46726
                   </a>
                 </div>
                 <div>
                   <span className="block font-mono text-[11px] uppercase tracking-wide text-ink-dim mb-1">Studio</span>
-                  <span className="font-semibold text-ink">Navi Mumbai, Maharashtra, India</span>
+                  <span className="font-semibold text-ink">Mulund, Maharashtra, India</span>
                 </div>
               </div>
 
