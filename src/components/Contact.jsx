@@ -74,8 +74,17 @@ const [message, setMessage] = useState("")
                 </div>
                 <div>
                   <span className="block font-mono text-[11px] uppercase tracking-wide text-ink-dim mb-1">Phone</span>
-                  <a href="tel:+91 73043 02068" className="font-semibold text-ink hover:text-gold-deep transition-colors">
+                  <a href="tel:+918928246726" className="font-semibold text-ink hover:text-gold-deep transition-colors">
                     +91 89282 46726
+                  </a>
+                  <a
+                    href="https://wa.me/918928246726?text=Hi%20Nirmora%2C%20I'd%20like%20to%20discuss%20a%20project."
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Chat with Nirmora on WhatsApp"
+                    className="block text-[13px] text-ink-dim hover:text-gold-deep transition-colors mt-0.5"
+                  >
+                    Chat on WhatsApp →
                   </a>
                 </div>
                 <div>
